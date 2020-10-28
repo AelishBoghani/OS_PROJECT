@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round Robin</title>
+    <link rel="stylesheet" href="demo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="header.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="left">
+            <a href="index.html">OS</a>
+        </div>
+        <div class="mid">
+            <a href="FCFS.html">FCFS</a>
+            <a href="SJF.html">SJF</a>
+            <a href="RR.html">RR</a>
+            <a href="hrrn.html">HRRN</a>
+            <a href="ljf.html">LJF</a>
+            <a href="srtf.html">SRTF</a>
+            <a href="lrtf.html">LRTF</a>
+            <a href="pr.html">PRIORITY</a>
+
+        </div>
+        <div class="right">
+            <a href="about_us.html">about us</a>
+        </div>
+    </div>
+
+    <br>
+    <h1>RR IMPLEMENTATION</h1>
+
+    <input type="number" id="process" placeholder="Enter Total process">
+    <input type="number" id="timeQ" placeholder="Enter Time Quantum">
+    <button class="btn" id="add">ADD ROWS</button>
+    <br><br>
+
+    <div id="container">
+        <div class="item">Process No.</div>
+        <div class="item">Arrival time</div>
+        <div class="item">Burst time</div>
+
+        <div class="item ans" style="border: 2px solid black;">Completion Time</div>
+        <div class="item ans" style="border: 2px solid black;">Turn Around Time</div>
+        <div class="item ans" style="border: 2px solid black;">Waiting Time</div>
+
+    </div>
+
+    <div id="data">
+        <label class="cen">0</label>
+        <input type="number" class="cen">
+        <input type="number" class="cen">
+        <label class="ans"></label>
+        <label class="ans"></label>
+        <label class="ans"></label>
+    </div>
+    <br>
+    <button id="add_row" class="btn">Add Row</button>
+    <button id="delete_row" class="btn">Delete Row</button>
+    <br>
+    <button id="compute" class="btn">Compute</button>
+    <button id="reset" class="btn">Reset</button>
+
+    <br><br>
+
+    <!-- <button id="animate" class="btn">Animate</button> -->
+
+    <div id="animateAll">
+        <label class="start"></label>
+        <div class="animation">
+            <label class="process_animate">p0</label>
+        </div>
+    </div>
+
+    <div class="avg">
+        <span class="b">Average Turn Around Time </span>
+        <label class="a" id="avg_tat"></label>
+        <span class="b">Average Waiting Time </span>
+        <label class="a" id="avg_wat"></label>
+    </div>
+    
+</body>
+<script src="jquery.js"></script>
+<script type="module" src="RR.js"></script>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="header.css">
+    <style>
+        body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: black;
+}
+       .fcfs{
+           background-image: url("");
+           background-repeat: no-repeat;
+           overflow: hidden;
+           width: 1600px;
+           height: 500px;
+           display: flex;
+           margin-top: 10px;
+           color: #f5f5f7;
+           padding-top: 100px;
+       }
+       .sjf{
+           background-color: white;
+           background-repeat: no-repeat;
+           overflow: hidden;
+           width: 1600px;
+           height: 500px;
+           display: flex;
+           margin-top: 10px;
+           color: #f5f5f7;
+           padding-top: 50px;
+           color:black;
+           padding-top: 100px;
+       }
+       .core{
+           padding-left: 5%;
+       }
+       .core a{
+           font-size: 25px;
+           color: black;
+           background: white;
+           border-radius: 10px;
+       }
+       .core1{
+           padding-left: 5%
+       }
+       .core1 a{
+           font-size: 25px;
+           color:white;
+           background : black;
+           border-radius: 10px;
+       }
+
+#b1{
+text-align: center;
+  padding: 15px 32px;
+  display: inline-block;
+}
+#b2{
+text-align: center;
+  padding: 15px 32px;
+  display: inline-block;
+}
+
+a{
+text-align: center;
+}
+
+p{
+text-align: center;
+}
+.column {
+  width: 33.33%;
+  padding: 5px;
+  position:absolute;
+right:0;
+}
+
+.column1 {
+  width: 33.33%;
+  padding: 5px;
+  float: left;
+position: absolute;
+}
+
+
+        #b1:hover{
+            color: white;
+            border: 5px solid white;
+            background-color: black;
+        }
+ #b2:hover{
+            color: black;
+            border: 5px solid black;
+            background-color: white;
+        }
+
+h2{
+font-size: 40px;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <a href="index.html">OS</a>
+        </div>
+        <div class="mid">
+            <a href="FCFS.html">FCFS</a>
+            <a href="SJF.html">SJF</a>
+            <a href="RR.html">RR</a>
+            <a href="hrrn.html">HRRN</a>
+            <a href="ljf.html">LJF</a>
+            <a href="srtf.html">SRTF</a>
+            <a href="lrtf.html">LRTF</a>
+            <a href="pr.html">PRIORITY</a>
+
+        </div>
+        <div class="right">
+            <a href="about_us.html">about us</a>
+        </div>
+    </div>
+
+    <div class="fcfs">
+        <div class="core">
+	<div class="column">
+    	<img src="1.png" alt="Snow" style="width:100%">
+  	</div>
+            <div style="hight:200px; margin:100px 20px 0px" >
+            <h2>First Come First Serve</h2>
+            <p><a  id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a  id="b1" onclick="window.location.href = 'FCFS.html';">Demo</a></p>
+             </div>
+         </div>
+    </div>
+    <div class="sjf">
+        <div class="core1">
+	<div class="column1">
+    	<img src="2.png" alt="Snow" style="width:100%">
+  	</div>
+            <div  style="position:absolute; right:0; hight:200px; margin:100px 20px 0px">
+            <h2>Shortest Job first</h2>
+           <p> <a id="b2" onclick="window.location.href = 'sjf_info.html';">Learn more </a></p>
+            <p><a id="b2" onclick="window.location.href = 'SJF.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+    <div class="fcfs">
+        <div class="core">
+	<div class="column">
+    	<img src="1.png" alt="Snow" style="width:100%">
+  	</div>
+            <div style="hight:200px; margin:100px 0px 0px">
+            <h2>Round Robin Algorithm</h2>
+            <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a id="b1" onclick="window.location.href = 'RR.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+    <div class="sjf">
+        <div class="core1">
+	<div class="column1">
+    	<img src="5.png" alt="Snow" style="width:100%">
+  	</div>
+            <div  style="position:absolute; right:0; hight:200px; margin:100px 0px 0px">
+            <h2>Highest Responce Ratio Next</h2>
+           <p> <a id="b2" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a id="b2" onclick="window.location.href = 'hrrn.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+
+ <div class="fcfs">
+        <div class="core">
+	<div class="column">
+    	<img src="1.png" alt="Snow" style="width:100%">
+  	</div>
+            <div style="hight:200px; margin:100px 0px 0px">
+            <h2>Longest Job First Algorithm</h2>
+            <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a id="b1" onclick="window.location.href = 'ljf.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="sjf">
+        <div class="core1">
+	<div class="column1">
+    	<img src="5.png" alt="Snow" style="width:100%">
+  	</div>
+            <div  style="position:absolute; right:0; hight:200px; margin:100px 0px 0px">
+            <h2>Shortest Remaining Time First</h2>
+           <p> <a id="b2" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a id="b2" onclick="window.location.href = 'srtf.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+
+ <div class="fcfs">
+        <div class="core">
+	<div class="column">
+    	<img src="1.png" alt="Snow" style="width:100%">
+  	</div>
+            <div style="hight:200px; margin:100px 0px 0px">
+            <h2>Longest Remaining Time First</h2>
+            <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+            <p><a id="b1" onclick="window.location.href = 'lrtf.html';">Demo</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
