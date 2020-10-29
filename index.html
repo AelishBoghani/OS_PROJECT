@@ -55,7 +55,7 @@
        }
 
 #b1{
-text-align: center;
+  text-align: center;
   padding: 15px 32px;
   display: inline-block;
 }
@@ -91,11 +91,16 @@ position: absolute;
             color: white;
             border: 5px solid white;
             background-color: black;
+            cursor: pointer;
+            
+            
         }
- #b2:hover{
+        #b2:hover{
             color: black;
             border: 5px solid black;
             background-color: white;
+            cursor: pointer;
+            
         }
 
 h2{
@@ -127,10 +132,10 @@ font-size: 40px;
     <div class="fcfs">
         <div class="core">
 	<div class="column">
-    	<img src="1.png" alt="Snow" style="width:100%">
+    	<img src="1.png" alt="Snow" style="max-width:100%;height:auto;">
   	</div>
-            <div style="hight:200px; margin:100px 20px 0px" >
-            <h2>First Come First Serve</h2>
+            <div style="height:200px; margin:100px 20px 0px" >
+            <h2 style="font-size:3vw;">First Come First Serve</h2>
             <p><a  id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a  id="b1" onclick="window.location.href = 'FCFS.html';">Demo</a></p>
              </div>
@@ -139,10 +144,10 @@ font-size: 40px;
     <div class="sjf">
         <div class="core1">
 	<div class="column1">
-    	<img src="2.png" alt="Snow" style="width:100%">
+    	<img src="2.png" alt="Snow" style="max-width:100%;height:auto;">
   	</div>
-            <div  style="position:absolute; right:0; hight:200px; margin:100px 20px 0px">
-            <h2>Shortest Job first</h2>
+            <div  style="position:absolute; right:0; height:200px; margin:100px 20px 0px">
+            <h2 style="font-size:3vw;">Shortest Job first</h2>
            <p> <a id="b2" onclick="window.location.href = 'sjf_info.html';">Learn more </a></p>
             <p><a id="b2" onclick="window.location.href = 'SJF.html';">Demo</a></p>
         </div>
@@ -153,8 +158,8 @@ font-size: 40px;
 	<div class="column">
     	<img src="1.png" alt="Snow" style="width:100%">
   	</div>
-            <div style="hight:200px; margin:100px 0px 0px">
-            <h2>Round Robin Algorithm</h2>
+            <div style="height:200px; margin:100px 0px 0px">
+            <h2 style="font-size:3vw;">Round Robin Algorithm</h2>
             <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a id="b1" onclick="window.location.href = 'RR.html';">Demo</a></p>
         </div>
@@ -163,10 +168,10 @@ font-size: 40px;
     <div class="sjf">
         <div class="core1">
 	<div class="column1">
-    	<img src="5.png" alt="Snow" style="width:100%">
+    	<img src="2.png" alt="Snow" style="width:100%">
   	</div>
-            <div  style="position:absolute; right:0; hight:200px; margin:100px 0px 0px">
-            <h2>Highest Responce Ratio Next</h2>
+            <div  style="position:absolute; right:0; height:200px; margin:100px 0px 0px">
+            <h2 style="font-size:3vw;">Highest Responce Ratio Next</h2>
            <p> <a id="b2" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a id="b2" onclick="window.location.href = 'hrrn.html';">Demo</a></p>
         </div>
@@ -178,8 +183,8 @@ font-size: 40px;
 	<div class="column">
     	<img src="1.png" alt="Snow" style="width:100%">
   	</div>
-            <div style="hight:200px; margin:100px 0px 0px">
-            <h2>Longest Job First Algorithm</h2>
+            <div style="height:200px; margin:100px 0px 0px">
+            <h2 style="font-size:3vw;">Longest Job First</h2>
             <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a id="b1" onclick="window.location.href = 'ljf.html';">Demo</a></p>
         </div>
@@ -189,10 +194,10 @@ font-size: 40px;
 <div class="sjf">
         <div class="core1">
 	<div class="column1">
-    	<img src="5.png" alt="Snow" style="width:100%">
+    	<img src="2.png" alt="Snow" style="width:100%">
   	</div>
-            <div  style="position:absolute; right:0; hight:200px; margin:100px 0px 0px">
-            <h2>Shortest Remaining Time First</h2>
+            <div  style="position:absolute; right:0; height:200px; margin:100px 0px 0px">
+            <h2 style="font-size:3vw;">Shortest Remaining Time First</h2>
            <p> <a id="b2" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a id="b2" onclick="window.location.href = 'srtf.html';">Demo</a></p>
         </div>
@@ -204,13 +209,26 @@ font-size: 40px;
 	<div class="column">
     	<img src="1.png" alt="Snow" style="width:100%">
   	</div>
-            <div style="hight:200px; margin:100px 0px 0px">
-            <h2>Longest Remaining Time First</h2>
+            <div style="height:200px; margin:100px 0px 0px">
+            <h2 style="font-size:3vw;">Longest Remaining Time First</h2>
             <p><a id="b1" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
             <p><a id="b1" onclick="window.location.href = 'lrtf.html';">Demo</a></p>
         </div>
     </div>
 </div>
+<div class="sjf">
+    <div class="core1">
+<div class="column1">
+    <img src="2.png" alt="Snow" style="width:100%">
+  </div>
+        <div  style="position:absolute; right:0; height:200px; margin:100px 0px 0px">
+        <h2 style="font-size:3vw;">Priority Algorithm</h2>
+       <p> <a id="b2" onclick="window.location.href = 'fcfs_info.html';">Learn more </a></p>
+        <p><a id="b2" onclick="window.location.href = 'pr.html';">Demo</a></p>
+    </div>
+</div>
+</div>
+
 
 </body>
 </html>
