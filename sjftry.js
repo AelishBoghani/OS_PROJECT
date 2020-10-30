@@ -131,6 +131,47 @@ $(document).ready(function () {
         }
 
     }, 1000);
+    let flg = [];
+    //select process
+    function check1(flg) {
+        let j = 1;
+        for (let i = 0; i < flg.length; i++) {
+            if (flg[i] == 0)
+                j = 0;
+        }
+        return j;
+    }
+
+    function select_process1(till) {
+        if (check1(flg))
+            return -2;
+        let n = lst;
+        let min = 1e18, select = -1;
+        //console.log(till);
+        for (let i = 0; i < n && arrival_burst[i][0] <= till; i++) {
+            if (flg[arrival_burst[i][2]] == 0 && min > arrival_burst[i][1]) {
+                //console.log(arrival_burst[i][1]);
+                min = arrival_burst[i][1];
+                select = arrival_burst[i][2];
+            }
+        }
+        //console.log();
+        if (select == -1) {
+            return -1;
+        }
+        else {
+            flg[select] = 1;
+            return select;
+        }
+    }
+
+    function afterWaste() {
+        let n = lst;
+        for (let i = 0; i < n; i++) {
+            if (flg[arrival_burst[i][2]] == 0)
+                return arrival_burst[i][0];
+        }
+    }
 
     //Animation function
     function fun_animation() {
@@ -140,7 +181,7 @@ $(document).ready(function () {
         let i = -1;
         let j;
         while (1) {
-            j = select_process(last);
+            j = select_process1(last);
             console.log(j);
             if (j == -2) {
                 break;
@@ -215,9 +256,9 @@ $(document).ready(function () {
         let last = 0;
         let i = -1;
         let j;
-        for (let i = 0; i < arrival_sort.length; i++) {
+        for (let i = 0; i < arrival_burst.length; i++) {
             //we have pushed the (arrival_index,arrval_time) when it enters in the ready queue;
-            ready_queue.queue(arrival_sort[i]);
+            ready_queue.queue(arrival_burst[i]);
         }
         while (1) {
             j = select_process(last, ready_queue);
@@ -321,7 +362,7 @@ $(document).ready(function () {
 
             arrival.length = 0;
             burst.length = 0;
-            arrival_brust.length = 0;
+            arrival_burst.length = 0;
             IO_time.length = 0;
             let index = -1;
             for (let i = 0; i < texts.length; i++) {
@@ -373,35 +414,27 @@ $(document).ready(function () {
         tat.length = n;
         let count = 0, last = 0;
 
-        arrival_burst = arrival_burst.sort(function (a, b) {  return a[0] - b[0]; });
-        // arrival_sort.sort();
-        console.log(arrival_brust);
+        arrival_burst = arrival_burst.sort(function (a, b) { return a[0] - b[0]; });
+        // arrival_brust.sort();
+        console.log(arrival_burst);
         //compute Completion time
         if (check == false) {
-            while (count < n) {
-                if (last >= arrival_burst[count][0])
-                    Completion[arrival_burst[count][1]] = last + burst[arrival_burst[count][1]];
-                else {
-                    last = arrival_burst[count][0];
-                    Completion[arrival_burst[count][1]] = last + burst[arrival_brust[count][1]];
-                }
-                last = Completion[arrival_burst[count][1]];
-                count++;
-            }
+          
+            fun_animation();
         }
         else {
             fun_IO_animation();
         }
-        let count = 0;
+        count = 0;
         //compute Turn Around Time and Waiting Time
         if (check == true) {
             while (count < n) {
                 // console.log(Completion[count]);
-                 tat[count] = Completion[count] - arrival[count];
-                 wt[count] = tat[count] - burst[count];
-                 count++;
-             }
-     
+                tat[count] = Completion[count] - arrival[count];
+                wt[count] = tat[count] -total_Burst[count];
+                count++;
+            }
+
         }
         else {
             while (count < n) {
@@ -445,8 +478,7 @@ $(document).ready(function () {
             fun_animation();
 
     });
-    function makeAnimationHide()
-    {
+    function makeAnimationHide() {
         $(".animation").css("width", 0);
         $(".animation").css("color", "black");
         $(".animation").text("");
@@ -463,6 +495,6 @@ $(document).ready(function () {
 
     //reset the button
     $("#reset").click(makeHide);
-    
+
 });
 

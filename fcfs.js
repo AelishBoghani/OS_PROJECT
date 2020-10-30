@@ -383,7 +383,7 @@ $(document).ready(function () {
         let count = 0, last = 0;
 
         arrival_sort = arrival_sort.sort(function (a, b) {  return a[0] - b[0]; });
-        // arrival_sort.sort();
+        // consol.log(arrival_sort.sort());
         console.log(arrival_sort);
         //compute Completion time
         if(check==false){
