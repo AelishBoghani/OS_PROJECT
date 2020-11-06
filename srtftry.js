@@ -13,9 +13,11 @@ $(document).ready(function () {
     let arrival_process = [];
     let queue=[];
     let flg=0;
+    let total_bt = [];
     let fin_burst=[];
     let check = false;
     let IO_time = [];
+    let arrival_sort = [];
 
     // toggle of IO 
 
@@ -134,6 +136,14 @@ $(document).ready(function () {
         }
 
     }, 1000);
+    //remove function
+    function remove(array, n) {
+        var index = n;
+        if (index > -1) {
+            array.splice(index, 1);
+        }
+        return array;
+    }
     
     //select process
     function addQueue(last)
@@ -253,87 +263,140 @@ $(document).ready(function () {
         $(".start").eq(i).text(last);
     }
 
+    function select_process_IO(last, arrival_sort) {
+        let n = lst;
+        let min = 1e18;
+        let max = -1;
+        let select = -1;
+        let first = [];
+        let j = 0;
+        console.log('arrival_sort', arrival_sort);
+        if (arrival_sort.length == 0) {
+            return -2;
+        }
+        for (let i = 0; (i < arrival_sort.length) && (arrival_sort[i][0] <= last); i++) {
+            if (min >= total_bt[arrival_sort[i][1]] ) {
+                if(min==total_bt[arrival_sort[i][1]]){
+                    if(arrival_sort[i][1]<arrival_sort[j][1]){
+                        j=i
+                    }
+                }
+                else{
+                min = total_bt[arrival_sort[i][1]];
+                j = i;
+                }
+            }
+        }
+        console.log("j for=", j);
+        if (j != 0) {
+            first[0] = arrival_sort[j];
+        }
+        else {
+            first[0] = arrival_sort[0];
+        }
+        console.log("first", first);
+        console.log('j', j);
+        console.log('last', last);
+        if (first[0][0] > last) {
+            console.log('waste');
+            return -1;
+        }
+        else {
 
-    // function select_process_IO(cur, ready_queue) {
-    //     let select = -1;
-    //     if (ready_queue.length == 0) {
-    //         return -2;
-    //     }
-    //     let first = ready_queue.peek();
-    //     if (first[0] > cur) {
-    //         return -1;
-    //     }
-    //     else {
-    //         ready_queue.dequeue();
-    //         let ind = first[1];
-    //         let burst_cur = burst[ind][0];
-    //         if (burst[ind].length > 1)
-    //             ready_queue.queue([cur + burst_cur + burst[ind][1], first[1]]);
-    //         burst[ind].shift();
-    //         burst[ind].shift();
-    //         first[0] = burst_cur;
-    //         select = first;
-    //     }
-    //     return select;
-    // }
+            let ind = first[0][1];
+            console.log("ind=", ind);
+
+            let burst_cur = burst[ind][0];
+            
+            burst[ind][0]=burst[ind][0]-1;
+            total_bt[ind] = total_bt[ind] - 1;
+            if(burst[ind][0]==0){
+                arrival_sort = remove(arrival_sort, j);
+                if(burst[ind].length>1)
+                arrival_sort.push([(last + 1 + burst[ind][1]), first[0][1]]);
+                burst[ind].shift();
+            burst[ind].shift();
+            }
+            first[0][0] = 1;
+            select = first;
+           arrival_sort = arrival_sort.sort(function (a, b) { 
+               if(a[0]==b[0]){
+                   return a[1]-b[1];
+               }
+               else{
+                   return a[0]-b[0];
+               }
+            });
+        }
+        console.log('arrival_____sort',arrival_sort);
+        return select;
+        
+    }
+    function fun_IO_animation() {
+        
+        let n = lst;
+       
+        let last = 0;
+        let i = -1;
+        let j;
+
+        while (1) {
+            j = select_process_IO(last, arrival_sort);
+            console.log("j=", j);
+            if (j == -2) {
+                break;
+            }
+            else if (j == -1) {
+                i++;
+                $("#animateAll").append(s_animate);
+                $(".animation").eq(i).css("visibility", "visible");
+                $(".animation").eq(i).text("Waste");
+                $(".animation").eq(i).css("background-color", "black");
+                $(".animation").eq(i).css("color", "white");
+                $(".start").eq(i).text(last);
+                let next_arrive = arrival_sort[0][0];
+                let cur = 50 * (next_arrive - last);
+                $(".animation").eq(i).animate({
+                    width: cur
+                }, 500);
+                last = next_arrive;
+                continue;
+            }
+            console.log('j', j);
+            console.log('burst', burst);
+
+            let cur;
+            cur = 50;
+            i++;
+            $("#animateAll").append(s_animate);
+            $(".animation").eq(i).css("visibility", "visible");
+            $(".animation").eq(i).text("P" + j[0][1]);
+            console.log(j[0][1]);
+            $(".start").eq(i).text(last);
+
+            if (i % 2)
+                $(".animation").eq(i).css("background-color", "lightblue");
+            else
+                $(".animation").eq(i).css("background-color", "red");
+
+            $(".animation").eq(i).animate({
+                width: cur
+            }, 1000);
+            if (check == true) {
+                last = last + 1;
+                console.log('yy', j);
+                if (burst[j[0][1]].length == 0)
+                    Completion[j[0][1]] = last;
+            }
+            
+        }
+        i++;
+        $("#animateAll").append(s_animate);
+        $(".start").eq(i).text(last);
+    }
 
 
-    // function fun_IO_animation() {
-    //     let n = lst;
-    //     var ready_queue = new PriorityQueue({ comparator: function (a, b) { return a[0] - b[0]; } });
-    //     let last = 0;
-    //     let i = -1;
-    //     let j;
-    //     for (let i = 0; i < arrival_burst.length; i++) {
-    //         //we have pushed the (arrival_index,arrval_time) when it enters in the ready queue;
-    //         ready_queue.queue(arrival_burst[i]);
-    //     }
-    //     while (1) {
-    //         j = select_process(last, ready_queue);
-    //         console.log(j);
-    //         if (j == -2) {
-    //             break;
-    //         }
-    //         else if (j == -1) {
-    //             i++;
-    //             $("#animateAll").append(s_animate);
-    //             $(".animation").eq(i).css("visibility", "visible");
-    //             $(".animation").eq(i).text("Waste");
-    //             $(".animation").eq(i).css("background-color", "black");
-    //             $(".animation").eq(i).css("color", "white");
-    //             $(".start").eq(i).text(last);
-    //             let next_arrive = ready_queue.peek();
-    //             let cur = 50 * (next_arrive[0] - last);
-    //             $(".animation").eq(i).animate({
-    //                 width: cur
-    //             }, 500);
-    //             last = next_arrive[0];
-    //             continue;
-    //         }
-    //         let cur = 50 * j[0];
-    //         i++;
-    //         $("#animateAll").append(s_animate);
-    //         $(".animation").eq(i).css("visibility", "visible");
-    //         $(".animation").eq(i).text("P" + j[1]);
-    //         $(".start").eq(i).text(last);
 
-    //         if (i % 2)
-    //             $(".animation").eq(i).css("background-color", "lightblue");
-    //         else
-    //             $(".animation").eq(i).css("background-color", "red");
-
-    //         $(".animation").eq(i).animate({
-    //             width: cur
-    //         }, 1000);
-    //         last = last + j[0];
-    //         //console.log("j[1]=",j[1]);
-    //         if (burst[j[1]].length == 0)
-    //             Completion[j[1]] = last;
-    //     }
-    //     i++;
-    //     $("#animateAll").append(s_animate);
-    //     $(".start").eq(i).text(last);
-    // }
 
     //algorithm
     $("#compute").click(function () {
@@ -387,11 +450,12 @@ $(document).ready(function () {
             }).get();
 
             console.log(texts);
-
             arrival.length = 0;
+            total_bt.length = 0;
             burst.length = 0;
-            arrival_burst.length = 0;
             IO_time.length = 0;
+            total_bt.length = 0;
+            arrival_sort.length = 0;
             let index = -1;
             for (let i = 0; i < texts.length; i++) {
                 if (i % 4 == 0)
@@ -411,9 +475,9 @@ $(document).ready(function () {
                         return;
                     }
                     arrival.push(parseInt(texts[i]));
-                    arrival_burst.push([parseInt(texts[i]), arrival_burst.length]);
+                    arrival_sort.push([parseInt(texts[i]), arrival_sort.length]);
                 }
-                else {
+                else if (i % 4 == 3) {
                     let array = [];
                     index++;
                     let b = 0;
@@ -428,9 +492,10 @@ $(document).ready(function () {
                             b += parseInt(allBT[index]);
                         }
                     }
-                    console.log(array);
+                    console.log("array", array);
                     burst.push(array);
                     total_Burst.push(b);
+                    total_bt.push(b)
                 }
             }
         }
@@ -440,9 +505,14 @@ $(document).ready(function () {
         Completion.length = n;
         wt.length = n;
         tat.length = n;
-        // let count = 0, last = 0;
+        let count = 0, last = 0;
 
-        arrival_process = arrival_process.sort(function (a, b) {  return a[0] - b[0]; });
+        if (check == false) {
+            arrival_process = arrival_process.sort(function (a, b) { return a[0] - b[0]; });
+        }
+        else {
+            arrival_sort = arrival_sort.sort(function (a, b) { return a[0] - b[0]; });
+        };
         // arrival_brust.sort();
         console.log(arrival_process);
         //compute Completion time
@@ -453,26 +523,23 @@ $(document).ready(function () {
         else {
             fun_IO_animation();
         }
-        let count = 0;
+     count = 0;
         //compute Turn Around Time and Waiting Time
-        if (check == false) {
+        if (check == true) {
             while (count < n) {
-                 //console.log(Completion[count]);
-                 tat[count] = Completion[count] - arrival[count];
-                //console.log(fin_burst);
-                 wt[count] = tat[count] - fin_burst[count];
-                 count++;
-             }
+                // console.log(Completion[count]);
+                tat[count] = Completion[count] - arrival[count];
+                wt[count] = tat[count] -total_Burst[count];
+                count++;
+            }
 
         }
         else {
             while (count < n) {
-                 //console.log(Completion[count]);
-                 tat[count] = Completion[count] - arrival[count];
-                 //console.log(fin_burst);
-                 wt[count] = tat[count] - fin_burst[count];
-                 count++;
-             }
+                tat[count] = Completion[count] - arrival[count];
+                wt[count] = tat[count] - burst[count];
+                count++;
+            }
         }
 
         console.log(Completion);
