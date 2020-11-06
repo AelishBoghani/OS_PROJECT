@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longest Job First</title>
+    <title>priority</title>
     <link rel="stylesheet" href="demo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lobster&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -31,14 +31,32 @@
         </div>
     </div>
     <br>
-    <h1>LONGEST JOB FIRST</h1>
-
+    <div></div>
+    <h1>LJF IMPLEMENTATION</h1>
+    <label style="font-size: 20px; width: 60px;height: 34px;">IO</label>
+    <label class="switch">
+        <input type="checkbox" id="check">
+        <span class="slider round"></span>
+    </label>
+    <br>
     <input type="number" id="process" placeholder="Enter Total process">
     <button class="btn" id="add">ADD ROWS</button>
     <br><br>
 
     <div id="container">
         <div class="item">Process No.</div>
+        <div class="item">Arrival time</div>
+        <div class="item">Burst time</div>
+
+        <div class="item ans" style="border: 2px solid black;">Completion Time</div>
+        <div class="item ans" style="border: 2px solid black;">Turn Around Time</div>
+        <div class="item ans" style="border: 2px solid black;">Waiting Time</div>
+
+    </div>
+
+    <div id="container_IO">
+        <div class="item">Process No.</div>
+        <div class="item">Total IO</div>
         <div class="item">Arrival time</div>
         <div class="item">Burst time</div>
 
@@ -56,6 +74,19 @@
         <label class="ans"></label>
         <label class="ans"></label>
     </div>
+
+    <div id="data_IO">
+        <label class="cen">0</label>
+        <input type="number" class="cen">
+        <input type="number" class="cen">
+        <div class="cen" style="overflow: auto;">
+            <input type="number" class="cen_IO" placeholder="BT" style="width:60px;">
+        </div>
+        <label class="ans"></label>
+        <label class="ans"></label>
+        <label class="ans"></label>
+    </div>
+    <br>
     <br>
     <button id="add_row" class="btn">Add Row</button>
     <button id="delete_row" class="btn">Delete Row</button>
@@ -83,5 +114,5 @@
     
 </body>
 <script src="jquery.js"></script>
-<script type="module" src="ljf.js"></script>
+<script src="ljf.js"></script>
 </html>
